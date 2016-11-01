@@ -1,0 +1,84 @@
+import random
+import time
+
+def apostar(quantidade,valor1,valor2):
+    x=random.randint(0,10)
+    y=random.randint(0,10)
+    if 0> valor1 >10:
+        return print("Digite um valor válido para o valor 1")
+    elif 0> valor2 >10:
+        return print("Digite um valor válido para o valor 2")
+    elif valor1 == x and valor2 == y or valor1 == y and valor2 == x:
+        print("Parabéns, os valores selecionados foram exatamente os selecionados aleatóriamente! ( ", x, y, " )")
+        quantidade *=10
+        return quantidade
+    elif valor1 == x or valor1 == y:
+        print("O seu valor 1 foi igual a um dos valores selecionados! ( ", x, y, " )")
+        quantidade *=2
+        return quantidade
+    elif valor2 == x or valor1 == y:
+        print("O seu valor 2 foi igual a um dos valores selecionados! ( ", x, y, " )")
+        quantidade *= 2
+        return quantidade
+    elif valor1 != x and y or valor2 !=x and y:
+        print("Seus valores são diferentes dos valores selecionados aleatóriamente.")
+        print("Você perdeu os créditos apostados")
+        return 0
+    else:
+        print("Comando inválido, tente novamente.")
+        return
+
+credit=100
+cont= "y"
+print("Bem vindo ao programa de apostas do kel! Seu objetivo é chegar aos 3000 créditos, você começa com 100 créditos e tenta passar por apostas em dois números.")
+print("Caso você acerte um dos números, seu valor apostado é dobrado. Caso você acerte os dois números, você tem seus créditos x10!")
+print("Os números podem sair repetidos, então pense bem na hora de apostar! Os números variam entre 0 à 10")
+while cont == "y" or cont == "Y":
+    if credit==0:
+        print("Você não tem mais créditos para continuar jogando, #leesho")
+        break
+    else:
+        quantidade=eval(input("Digite um Valor para você apostar:"))
+        if quantidade>credit:
+            print("Você não pode apostar um valor maior do que você tem.")
+        elif quantidade!=int(quantidade) or quantidade<1 :
+            print("Por favor, digite um número inteiro positivo.")
+        else:
+            credit-=quantidade
+            valor1=eval(input("Digite o Valor nº1:"))
+            if valor1<0:
+                print("Digite um valor inteiro positivo a partir de 0.")
+            elif valor1> 10:
+                print("Digite um valor inteiro positivo menor que 10.")
+            elif valor1 != int(valor1):
+                print("Digite um valor inteiro positivo entre 0 e 10.")
+            elif -1<valor1<11:
+                valor2=eval(input("Digite o Valor nº2:"))
+                if valor2 < 0:
+                    print("Digite um valor inteiro positivo a partir de 0.")
+                elif valor2 > 10:
+                   print("Digite um valor inteiro positivo menor que 10.")
+                elif valor2 != int(valor2):
+                    print("Digite um valor inteiro positivo entre 0 e 10.")
+                elif -1 < valor2 < 11:
+                    print("Tan.")
+                    time.sleep(1)
+                    print("Tan.")
+                    time.sleep(1)
+                    print("TAN!")
+                    time.sleep(1)
+                    valorf=apostar(quantidade,valor1,valor2)
+                    credit+=valorf
+                    print("Créditos: ", credit)
+                else:
+                    print("Comando inválido")
+            else:
+                print("Comando inválido")
+        cont=input("Deseja Continuar? (Y/N)")
+
+if credit>2999:
+  print("Parabéns, você ganhou as apostas, mas você perdeu o jogo, heheheheheheheheheh #porrakel")
+  exit
+elif credit<3000:
+  print("Seu total de créditos foi de: ", credit)
+  exit
